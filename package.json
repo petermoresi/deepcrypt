@@ -1,0 +1,28 @@
+{
+  "name": "deepcrypt",
+  "version": "1.0.0",
+  "description": "encrypt/decrypt js objects",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js | faucet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petermoresi/deepcrypt.git"
+  },
+  "keywords": [
+    "encryption"
+  ],
+  "author": "Peter Moresi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/petermoresi/deepcrypt/issues"
+  },
+  "homepage": "https://github.com/petermoresi/deepcrypt#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "faucet": "0.0.1",
+    "tape": "^4.5.1"
+  }
+}
