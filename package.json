@@ -1,6 +1,6 @@
 {
   "name": "deepcrypt",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "encrypt/decrypt js objects",
   "main": "index.js",
   "scripts": {
