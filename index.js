@@ -45,7 +45,7 @@ function deepCrypto(password, opts) {
           return acc;
         }
 
-        var val = 'A' + crypto.randomBytes(4).toString() + JSON.stringify( v[item] )
+        var val = 'A' + crypto.randomBytes(2).toString('hex') + JSON.stringify( v[item] )
         acc[item] = encrypt( val )
         return acc;
 
