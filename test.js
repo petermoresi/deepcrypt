@@ -5,11 +5,13 @@ test('deepcrypt', function(t) {
   var deepEncrypt = dc.deepEncrypt
   var deepDecrypt = dc.deepDecrypt
 
-  t.plan(8)
+  t.plan(10)
   // basic tests
   t.deepEqual(deepDecrypt(deepEncrypt({ foo: "foo" })), { foo: "foo" });
   t.deepEqual(deepDecrypt(deepEncrypt({ foo: 1 })), { foo: 1 });
   t.deepEqual(deepDecrypt(deepEncrypt({ foo: 1, bar: true })), { foo: 1, bar: true });
+  t.deepEqual(deepDecrypt(deepEncrypt({ bar: null })), { bar: null });
+  t.deepEqual(deepDecrypt(deepEncrypt({ foo: undefined, bar: null })), { foo: undefined, bar: null });
 
   // test exlude fields
   var obj = deepEncrypt({ id: 1, updated: "test", foo: 1, bar: true })
