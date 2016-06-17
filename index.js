@@ -73,7 +73,7 @@ function deepCrypto(password, opts) {
         }
 
         // recursively encrypt
-        if (typeof v[item] === 'object') {
+        if (v[item] && typeof v[item] === 'object') {
           acc[item] = d(v[item])
           return acc;
         }
