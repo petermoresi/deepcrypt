@@ -1,7 +1,7 @@
 # deepcrypt
 
 Node.js library to encrypt object while maintaining object structure. The values are encrypted but
-your keys are not. Built to stuff encrypted objects into NoSQL databases like MongoDB.
+the keys are left intact. Built to stuff encrypted objects into NoSQL databases like MongoDB.
 
 ## install
 
