@@ -60,8 +60,6 @@ function deepCrypto(password, opts) {
     function d(v) {
       return Object.keys(v).reduce( (acc, item) => {
 
-        console.log(item, v[item])
-
         // skip excluded fields
         if (fieldsToExclude.indexOf(item) > -1) {
           acc[item] = v[item]
