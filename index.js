@@ -4,9 +4,9 @@
 // Nodejs encryption with CTR
 var crypto = require('crypto')
 
-function deepCrypto(password, fieldsToExclude, algorithm) {
-  fieldsToExclude = fieldsToExclude || []
-  algorithm = algorithm || 'aes-256-ctr'
+function deepCrypto(password, opts) {
+  var fieldsToExclude = opts.exclude || [],
+  algorithm = opts.algorithm || 'aes-256-ctr'
 
   function encrypt(text){
     var cipher = crypto.createCipher(algorithm,password)
@@ -22,9 +22,7 @@ function deepCrypto(password, fieldsToExclude, algorithm) {
     return dec;
   }
 
-
   function deepEncrypt(obj) {
-
 
     function e(v) {
       return Object.keys(v).reduce( (acc, item) => {
@@ -47,9 +45,8 @@ function deepCrypto(password, fieldsToExclude, algorithm) {
           return acc;
         }
 
-        var obj = {}
-        obj[item] = v[item]
-        acc[item] = encrypt( JSON.stringify( obj ) )
+        var val = 'A' + crypto.randomBytes(4).toString() + JSON.stringify( v[item] )
+        acc[item] = encrypt( val )
         return acc;
 
       }, {})
@@ -83,8 +80,22 @@ function deepCrypto(password, fieldsToExclude, algorithm) {
           return acc;
         }
 
-        acc[item] = JSON.parse( decrypt(v[item]) )[item]
-        return acc;
+        var val = decrypt(v[item])
+
+        // version 1
+        if (val[0] === '{') {
+          acc[item] = JSON.parse( val )[item]
+          return acc;
+        }
+
+        // version 2
+        if (val[0] === 'A') {
+          acc[item] = JSON.parse( val.substr(5) )
+          return acc;
+        }
+
+        throw 'unsupported version!'
+
       }, {})
     }
 
